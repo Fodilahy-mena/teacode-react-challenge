@@ -7,7 +7,7 @@ const ENDPOINT = `https://teacode-recruitment-challenge.s3.eu-central-1.amazonaw
 function App() {
   const [contacts, setContacts] = useState([]);
   const [searchContactName, setsearchContactName] = useState('');
-  const selectedContacts = contacts.filter(contact => contact.checked == true);
+  // const [selectedContacts, setSelectedContacts] = useState([]);
     async function fetchData() {
         const response = await fetch(ENDPOINT);
         const data = await response.json();
@@ -22,11 +22,13 @@ function App() {
             ? { ...contact, checked: !contact.checked }
             : contact;
         });
+        const checkedContacts = updatedContacts.filter(contact => contact.checked);
         setContacts(updatedContacts);
+        // setSelectedContacts(checkedContacts);
+        console.log(checkedContacts.map(contact => contact.id));
     };
 
     function handleSearch(inputValue) {
-      console.log(selectedContacts.map(contact => contact.id));
       setsearchContactName(inputValue);
     }
 
@@ -35,7 +37,6 @@ function App() {
     }, []);
 
   const filteredContactsByName = contacts.filter(contact => contact.first_name.toLocaleLowerCase().includes(searchContactName.toLocaleLowerCase()) || contact.last_name.toLocaleLowerCase().includes(searchContactName.toLocaleLowerCase()));
-    console.log(filteredContactsByName)
   return (
     <div className="App">
       <Header/>

@@ -13,21 +13,22 @@ function Contact({contact, toggleContactItem}) {
             }
             <div>
                 <p>{contact.first_name} {contact.last_name}</p>
-                <span></span>
+                <small>{contact.email}</small>
             </div>
             <CheckBoxContainer>
                 <CheckBox type="checkbox" checked={contact.checked} onChange={() => {}} onClick={() => toggleContactItem(contact.id)}/>
-                {/* <CheckMark/> */}
             </CheckBoxContainer>
         </Item>
     )
 }
 
 const Item = styled.li`
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    margin-left: 16px;
+    margin-right: 16px;
     padding-top: 8px;
     padding-bottom: 8px;
-    flex-direction: row;
     align-items: center;
     border-bottom: 3px solid hsl(0, 0%, 90%);
 
@@ -41,57 +42,22 @@ const Item = styled.li`
 `;
 
 const CheckBoxContainer = styled.div`
-    display: block;
+    display: flex;
+    justify-content: flex-end;
     position: relative;
     padding-left: 35px;
-    margin-bottom: 12px;
     cursor: pointer;
     font-size: 22px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-//     &:hover input ~ span {
-//         background-color: #ccc;
-//     }
-//     input:checked ~ span {
-//         background-color: #2196F3;
-//     }
-//     span:after {
-//     content: "";
-//     position: absolute;
-//     display: none;
-//     }
-//     input:checked ~ span:after {
-//         display: block;
-//     }
-//     span:after {
-//     left: 9px;
-//     top: 5px;
-//     width: 5px;
-//     height: 10px;
-//     border: solid white;
-//     border-width: 0 3px 3px 0;
-//     -webkit-transform: rotate(45deg);
-//     -ms-transform: rotate(45deg);
-//     transform: rotate(45deg);
-// }
 `;
 const CheckBox = styled.input`
-    // position: absolute;
-    // opacity: 0;
-    // cursor: pointer;
-    // height: 0;
-    // width: 0;
-`;
-
-const CheckMark = styled.span`
-    position: absolute;
-    top: 0;
-    left: 0;
-    // height: 25px;
-    // width: 25px;
-    // background-color: #eee;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
 `;
 
 const Icon = styled.span`
