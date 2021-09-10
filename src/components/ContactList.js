@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 function ConatctList({contacts, toggleContactItem}) {
     
-    console.log(contacts)
     return (
         <List>
             {contacts.map(contact => <Contact key={contact.id} toggleContactItem={toggleContactItem} contact={contact}/>)}
